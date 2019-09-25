@@ -34,7 +34,7 @@ const Composed = adopt({
 /* eslint-enable */
 
 const Cart = () =>
-  null; /* () => (
+  null; /*() => (
   <Composed>
     {({ user, toggleCart, localState }) => {
       const me = user.data.me;
@@ -63,8 +63,7 @@ const Cart = () =>
       );
     }}
   </Composed>
-);
-*/
+); */
 
 export default Cart;
 export { LOCAL_STATE_QUERY, TOGGLE_CART_MUTATION };
