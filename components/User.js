@@ -1,6 +1,6 @@
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import PropTypes from "prop-types";
 
 const CURRENT_USER_QUERY = gql`
   query {
@@ -9,20 +9,6 @@ const CURRENT_USER_QUERY = gql`
       email
       name
       permissions
-      orders {
-        id
-      }
-      cart {
-        id
-        quantity
-        item {
-          id
-          price
-          image
-          title
-          description
-        }
-      }
     }
   }
 `;
@@ -34,7 +20,7 @@ const User = props => (
 );
 
 User.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired
 };
 
 export default User;
