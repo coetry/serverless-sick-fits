@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
-import Form from './styles/Form';
-import Error from './ErrorMessage';
-import { CURRENT_USER_QUERY } from './User';
+import React, { Component } from "react";
+import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
+import Form from "./styles/Form";
+import Error from "./ErrorMessage";
+import { CURRENT_USER_QUERY } from "./User";
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -17,9 +17,9 @@ const SIGNIN_MUTATION = gql`
 
 class Signin extends Component {
   state = {
-    name: '',
-    password: '',
-    email: '',
+    name: "",
+    password: "",
+    email: ""
   };
   saveToState = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -31,13 +31,13 @@ class Signin extends Component {
         variables={this.state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
-        {(signup, { error, loading }) => (
+        {(signin, { error, loading }) => (
           <Form
             method="post"
             onSubmit={async e => {
               e.preventDefault();
-              await signup();
-              this.setState({ name: '', email: '', password: '' });
+              await signin();
+              this.setState({ name: "", email: "", password: "" });
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>

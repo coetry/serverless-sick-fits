@@ -18,9 +18,17 @@ const lambda = new GraphQLServerLambda({
   resolverValidationOptions: {
     requireResolversForResolveType: false
   },
-  context: req => ({ ...req, db }),
+  context: req => {
+    console.log({ context: req });
+    return { ...req, db };
+  },
   playground: "/api/playground",
   endpoint: "/api/graphql"
 });
 
 exports.handler = lambda.handler;
+
+/*
+exports.handler = function(event, context, callback) {
+}
+*/

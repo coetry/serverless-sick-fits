@@ -12,8 +12,6 @@ const Nav = () => (
       const me = data ? data.me : null;
       console.log({ me });
       return (
-        <p>{me ? me.name : null}</p>
-      ); /*(
         <NavStyles data-test="nav">
           <Link href="/items">
             <a>Shop</a>
@@ -30,19 +28,16 @@ const Nav = () => (
                 <a>Account</a>
               </Link>
               <Signout />
-              <Mutation mutation={TOGGLE_CART_MUTATION}>
-                {toggleCart => (
-                  <button onClick={toggleCart}>
-                    My Cart
-                    <CartCount
-                      count={me.cart.reduce(
-                        (tally, cartItem) => tally + cartItem.quantity,
-                        0
-                      )}
-                    ></CartCount>
-                  </button>
-                )}
-              </Mutation>
+              {/*
+            <Mutation mutation={TOGGLE_CART_MUTATION}>
+              {(toggleCart) => (
+                <button onClick={toggleCart}>
+                  My Cart
+                  <CartCount count={me.cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0)}></CartCount>
+                </button>
+              )}
+            </Mutation>
+	     */}
             </>
           )}
           {!me && (
@@ -51,7 +46,7 @@ const Nav = () => (
             </Link>
           )}
         </NavStyles>
-      ); */
+      );
     }}
   </User>
 );

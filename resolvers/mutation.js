@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { randomBytes } = require("crypto");
+const { promisify } = require("util");
 
 const Mutation = {
   async createItem(parent, args, ctx, info) {
@@ -60,6 +62,34 @@ const Mutation = {
     );
 
     return user;
+  },
+  async signin(parent, { email, password }, ctx, info) {
+    // 1. check if there is a user with that email
+    const user = await ctx.db.query.user({ where: { email } });
+    if (!user) {
+      throw new Error("No such user found for email " + email);
+    }
+    // 2. check if password is correct
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new Error("Invalid Password");
+    }
+    // 3. generate jwt
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    // We set the jwt as a cookie on the response
+    ctx.response.setHeader(
+      "Set-Cookie",
+      `token=${token}; HttpOnly; Max-Age=${1000 * 60 * 60 * 24 * 365}`
+    );
+
+    return user;
+  },
+  signout(parent, args, ctx, info) {
+    ctx.response.setHeader(
+      "Set-Cookie",
+      `token=; Expires=${new Date(1).toUTCString()} HttpOnly;`
+    );
+    return { message: "Goodbye!" };
   }
 };
 
