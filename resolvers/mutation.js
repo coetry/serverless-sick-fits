@@ -14,7 +14,6 @@ const Mutation = {
       },
       info
     );
-    console.log(item);
     return item;
   },
   updateItem(parent, args, ctx, info) {
@@ -54,7 +53,7 @@ const Mutation = {
       info
     );
     // create JWT for them
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.PRISMA_SECRET);
     // We set the jwt as a cookie on the response
     ctx.response.setHeader(
       "Set-Cookie",
@@ -75,7 +74,7 @@ const Mutation = {
       throw new Error("Invalid Password");
     }
     // 3. generate jwt
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.PRISMA_SECRET);
     // We set the jwt as a cookie on the response
     ctx.response.setHeader(
       "Set-Cookie",

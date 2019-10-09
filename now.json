@@ -1,25 +1,10 @@
 {
   "version": 2,
   "name": "sick-fits",
-  "builds": [
-    {
-      "src": "graphql.js",
-      "use": "@now/node@canary",
-      "config": { "awsLambdaHandler": "graphql.handler" }
-    },
-    {
-      "src": "package.json",
-      "use": "@now/next"
-    }
-  ],
   "routes": [
     {
       "src": "/api/playground",
-      "dest": "graphql.js"
-    },
-    {
-      "src": "/api/graphql",
-      "dest": "graphql.js"
+      "dest": "api/graphql.js"
     }
   ],
   "env": {
