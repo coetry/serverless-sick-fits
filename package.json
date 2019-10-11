@@ -4,8 +4,9 @@
   "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": " next dev",
+    "schema": "node scripts/compile-schema.js",
+    "build": "node scripts/compile-schema.js; next build",
     "start": "next start",
     "test": "NODE_ENV=test jest --watch",
     "heroku-postbuild": "next build"
@@ -33,6 +34,7 @@
     "lodash.debounce": "^4.0.8",
     "next": "^9.0.6",
     "next-with-apollo": "^3.1.3",
+    "nodemailer": "^6.3.1",
     "nprogress": "^0.2.0",
     "prisma-binding": "^2.3.16",
     "prop-types": "^15.6.2",
@@ -42,6 +44,7 @@
     "react-dom": "^16.9.0",
     "react-stripe-checkout": "^2.6.3",
     "react-transition-group": "^2.5.0",
+    "stripe": "^7.10.0",
     "styled-components": "^3.4.9",
     "waait": "^1.0.2"
   },
